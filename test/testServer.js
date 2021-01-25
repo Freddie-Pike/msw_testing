@@ -8,16 +8,8 @@ rest.get("http://localhost:3002/class_members/1", (_req, res, ctx) => {
     ctx.status(200),
     ctx.json({
       rates: {
-        classMembers: [
-          { id: 3, userId: 3, classId: 1 },
-          { id: 2, userId: 2, classId: 1 },
-          { id: 1, userId: 1, classId: 1 },
-        ],
-        users: [
-          { id: 3, name: "Damian", email: "Damian@bobCollins.com", githubId: "qqq" },
-          { id: 2, name: "John", email: "John@bobCollins.com", githubId: "xyz" },
-          { id: 1, name: "Freddie", email: "freddiepike709@gmail.com", githubId: "abc" },
-        ],
+        classMembers: [{ id: 1, userId: 1, classId: 1 }],
+        users: [{ id: 1, name: "Jamie", email: "jamie@gmail.com" }],
       },
     })
   );
