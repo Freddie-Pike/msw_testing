@@ -1,0 +1,32 @@
+* {
+  outline: 1px solid black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mainPageWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.classSidebar {
+  flex-basis: 5%;
+  height: 100%;
+}
+
+.messageSection {
+  flex-basis: 75%;
+  height: 100%;
+}
+
+.classList {
+  flex-basis: 20%;
+  height: 100%;
+}
