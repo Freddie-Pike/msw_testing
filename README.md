@@ -25,3 +25,10 @@ npm run dev
 ```
 
 The api will then be listening for requests on 3002.
+
+## Frontend tests
+In project root:
+
+```
+npm run test:watch
+```
