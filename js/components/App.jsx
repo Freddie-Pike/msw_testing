@@ -8,6 +8,7 @@ function App() {
     const fetchData = async () => {
       const response = await axios.get("http://localhost:3002/users/1");
       setUser(response.data.user);
+      console.log(`response.data.user: ${JSON.stringify(response.data.user)}`);
     };
 
     fetchData();
