@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import express from "express";
 import cors from "cors";
-import { createConnection } from "typeorm";
+import { createConnection, getRepository } from "typeorm";
 import { __prod__ } from "./constants";
 import { join } from "path";
 import { User } from "./db/entities/User";
@@ -25,15 +25,21 @@ const main = async () => {
     name: "Jamie",
     email: "Jamie@jamie.com",
   }).save();
+  const defaultUser2 = await User.create({
+    name: "Sarah",
+    email: "Sarah@sarah.com",
+  }).save();
   console.log({ defaultUser1 });
+  console.log({ defaultUser2 });
 
   const app = express();
 
   app.use(cors({ origin: "*" }));
 
-  app.get("/users/:_user_id", jsonParser, async (req, res) => {
-    const user = await User.findOne(req.params._user_id);
-    res.send({ user });
+  app.get("/users/all", jsonParser, async (req, res) => {
+    const users = await await getRepository(User).createQueryBuilder("user").getMany();
+    console.log({users})
+    res.send({ users });
   });
 
   app.listen(3002, () => {

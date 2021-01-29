@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3002/users/1");
-      setUser(response.data.user);
-      console.log(`response.data.user: ${JSON.stringify(response.data.user)}`);
+      const response = await axios.get("http://localhost:3002/users/all");
+      setUsers(response.data.users);
     };
 
     fetchData();
@@ -16,7 +15,9 @@ function App() {
 
   return (
     <ul>
-      <li key={user?.id}>{user?.name}</li>
+      {users?.map((user) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
     </ul>
   );
 }

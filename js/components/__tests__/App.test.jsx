@@ -8,7 +8,7 @@ describe("App", () => {
 
     screen.debug();
     await waitFor(() => {
-      expect(screen.getByText("Jamie")).toBeInTheDocument();
+      expect(screen.getByText("Rivers")).toBeInTheDocument();
     });
     screen.debug();
   });
