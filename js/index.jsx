@@ -7,7 +7,13 @@ import { setupWorker } from "msw";
 
 // NOTE: This should setup a msw instance but it doesn't.
 // It instead uses the api.
-const worker = setupWorker(...handlers);
-worker.start();
+// From docs: https://mswjs.io/docs/recipes/deferred-mounting
+function prepare() {
+  const worker = setupWorker(...handlers);
+  return worker.start();
+  return Promise.resolve();
+}
 
-render(<App />, document.getElementById("root"));
+prepare().then(() => {
+  render(<App />, document.getElementById("root"));
+});
