@@ -4,9 +4,14 @@ const path = require("path");
 const config = {
   entry: __dirname + "/js/index.jsx",
   output: {
-    path: __dirname + "/webpack_bundle",
+    path: __dirname + "/public",
     filename: "webpack_bundle.js",
     publicPath: "/",
+  },
+  devServer: {
+    contentBase: path.join(__dirname + "/public"),
+    publicPath: "http://localhost:8080/public/",
+    port: 8080,
   },
   resolve: {
     extensions: [".js", ".jsx", ".css"],
