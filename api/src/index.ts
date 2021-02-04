@@ -36,7 +36,7 @@ const main = async () => {
 
   app.use(cors({ origin: "*" }));
 
-  app.get("/users/all", jsonParser, async (req, res) => {
+  app.get("/users/all", jsonParser, async (_req, res) => {
     const users = await await getRepository(User).createQueryBuilder("user").getMany();
     console.log({users})
     res.send({ users });
