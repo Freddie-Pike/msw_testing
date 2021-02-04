@@ -9,6 +9,7 @@ describe("App", () => {
     screen.debug();
     await waitFor(() => {
       expect(screen.getByText("Rivers")).toBeInTheDocument();
+      expect(screen.getByText("Amy")).toBeInTheDocument();
     });
     screen.debug();
   });
