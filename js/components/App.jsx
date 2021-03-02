@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
 import axios from "axios";
+import { gql, useMutation } from "@apollo/client";
+import React, { useState, useEffect } from "react";
+
+const GET_USER_INFO = gql`
+  query GetUserInfo {
+    user {
+      username
+      firstName
+    }
+  }
+`;
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const { data } = useQuery(GET_USER_INFO);
+  console.log(`data: ${data}`);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get("http://localhost:3002/users/all");
-      setUsers(response.data.users);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <ul>
-      {users?.map((user) => (
-        <li key={user.id}>{user.name}</li>
-      ))}
+      <li key={data?.user.id}>{data?.user.name}</li>
     </ul>
   );
 }

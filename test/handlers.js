@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { rest, graphql } from "msw";
 
 const handlers = [
   rest.get("http://localhost:3002/users/all", (_req, res, ctx) => {
@@ -12,9 +12,16 @@ const handlers = [
       })
     );
   }),
-  rest.get("*", (req, res, ctx) => {
-    console.error(`Please add request handler for ${req.url.toString()}`);
-    return res(ctx.status(500), ctx.json({ error: "You must add request handler." }));
+  graphql.query("GetUserInfo", (_req, res, ctx) => {
+    console.log("In GetUserInfo");
+    return res(
+      ctx.data({
+        users: {
+          id: 1,
+          name: "Jonas",
+        },
+      })
+    );
   }),
 ];
 
