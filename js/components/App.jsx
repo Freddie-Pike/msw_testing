@@ -6,8 +6,8 @@ import React, { useState, useEffect } from "react";
 const GET_USER_INFO = gql`
   query GetUserInfo {
     user {
-      username
-      firstName
+      id
+      name
     }
   }
 `;
@@ -15,7 +15,6 @@ const GET_USER_INFO = gql`
 function App() {
   const { data } = useQuery(GET_USER_INFO);
   console.log(`data: ${data}`);
-
 
   return (
     <ul>
