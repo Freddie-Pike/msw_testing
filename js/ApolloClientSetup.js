@@ -1,6 +1,14 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink, makeVar } from "@apollo/client";
 
-const link = new HttpLink({
+const userDefaults = {
+  id: null,
+  name: null,
+  first_name: null,
+};
+
+export const userVar = makeVar(userDefaults);
+
+export const link = new HttpLink({
   uri: "/graphql",
 
   // Use explicit `window.fetch` so tha outgoing requests
@@ -8,7 +16,18 @@ const link = new HttpLink({
   fetch: (...args) => fetch(...args),
 });
 
-const cache = new InMemoryCache();
+export const cache = new InMemoryCache({
+  Query: {
+    fields: {
+      user: {
+        read: () => {
+          console.log("cache read")
+          return userVar();
+        },
+      },
+    },
+  },
+});
 
 export const client = new ApolloClient({
   link,
