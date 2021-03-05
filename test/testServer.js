@@ -4,7 +4,7 @@ import handlers from "./handlers";
 
 const server = setupServer(...handlers);
 
-beforeAll(() => server.listen());
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 afterAll(() => server.close());
 beforeEach(() => server.resetHandlers());
 
